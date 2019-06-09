@@ -31,6 +31,11 @@ void arvv_imprime(Tree* t);
 void printa_data(Data* d);
 char* qual_mes(int m);
 Data* insere_data(int a,int b, int c, int d, int e);
+void insere_irmao(Tree* pai, Tree* irmao,char* nome);
+void insere_diretorio(Tree* t, Tree* dir, char* nome);
+Tree* busca(Tree* t, char* nome);
+void printa_arquivo(Tree* t);
+
 
 Tree* cria_raiz(Tree* t,char* nome_raiz){
 	Tree* m = (Tree*)malloc(sizeof(Tree));
@@ -45,11 +50,12 @@ Tree* cria_raiz(Tree* t,char* nome_raiz){
 	return m;
 }
 
+
 int main(){
 	int op;
 	Tree* c;
 	c = pont_arv();
-	c = cria_raiz(c,"C:");
+	c = cria_raiz(c,"c");
 	c = cria_arvore(c);
 	arvv_imprime(c);
 	while(op > 0 || op < 6){
@@ -70,6 +76,35 @@ Data* insere_data(int a, int b, int c, int d, int e){
 	dat->horas = d;
 	dat->minutos = e;
 	return dat;
+}
+
+void printa(Tree* t, char* nome){
+	Tree* p;
+	p = (Tree*)malloc(sizeof(Tree));
+	p = busca(p,nome);
+	if(p->tipo == 'D'){
+		printf("Diretorio\n");
+	}
+	if(p->tipo == 'B'){
+		printf("Arquivo Binario\n");
+	}
+	if(p->tipo == 'T'){
+		printf("Arquivo Texto\n");
+	}
+	printf("%s\n",p->nome);
+	if(p->tipo != 'R'){
+		printf("%s\n",p->nome_raiz);
+	}
+	if(p->tipo == 'D'){
+		printf("Quantidade de arquivos: %d\n",p->n_arqs);
+	}
+	else{
+		printf("Tamanho do arquivo: %d\n",p->n_arqs);
+	}
+	printf("Data de criacao: ");
+	printa_data(p->data_cria);
+	printf("Ultima modificacao feita em: ");
+	printa_data(p->ultima_mod);
 }
 
 void printa_data(Data* d){
@@ -102,14 +137,18 @@ void arvv_imprime(Tree* t){
 	printa_data(t->data_cria);
 	printf("Ultima modificacao feita em: ");
 	printa_data(t->ultima_mod);
-	for(p = t->prim; p != NULL; p = p->prox){
+	/*for(p = t->prim; p != NULL; p = p->prox){
 		if(p->tipo != 'R' && p->prim != NULL){
 			arvv_imprime(p);
 			if(p->prim->prox == NULL){
 				return;
 			}
 		}
+	}*/
+	for(p = t->prim; p != NULL; p = p->prox){
+		arvv_imprime(p);
 	}
+	
 }
 
 char* qual_mes(int m){
@@ -187,13 +226,80 @@ Tree* arv_aloca(Tree* t,char tipo, char* nome, int narqs, char* dat, char* hora,
 		strcpy(a->nome,nome);
 		strcpy(a->nome_raiz,nomearquivo);
 	}
-	arvv_insere(a,t);
-	return a;
+	if(a->tipo == 'D'){
+		Tree* search;
+		insere_diretorio(t,a,a->nome_raiz);
+		search = busca(t,"Usuarios");
+	}
+	if(a->tipo == 'B' || 'T'){
+		Tree* dir;
+		dir = (Tree*)malloc(sizeof(Tree));
+		dir = busca(t,a->nome);
+		insere_irmao(dir,a,dir->nome); //(UMA DESSAS DUAS TA COM PROBLEMA RESOLVER QUANDO NAO ESTIVER PUTO)
+	}
+	return t;
+}
+
+Tree* busca(Tree* t, char* nome){
+	Tree* p;
+	if(strcmp(t->nome_raiz,nome) == 0){
+		return t;
+	}
+	for(p = t->prim; p != NULL; p = p->prim){
+		//printf("%s",p->nome);
+		if(strcmp(p->nome_raiz,nome) == 0){
+			return p;
+		}
+		Tree* j;
+		for(j = p; j != NULL; j = p->prox){
+			if(strcmp(j->nome_raiz,nome) == 0){
+				return j;
+			}
+		}
+	}
+	printf("Não foi possivel encontrar o diretório %s na árvore.\n",nome);
+	return t;
+}
+
+void insere_diretorio(Tree* t, Tree* dir, char* nome){
+	Tree* p;
+	if(t->prim == NULL){
+		t->prim = dir;
+	}
+	for(p = t; p->prim !=NULL; p = p->prim){
+		if(strcmp(nome,p->nome_raiz) != 0){
+			Tree* j;
+			for(j = p; j->prox != NULL; j = j->prox){
+				if(j->prox == NULL){
+					j->prox = dir;
+				}
+			}
+		}
+	}
 }
 
 void arvv_insere(Tree* a, Tree* sa){
-	sa->next = a->prim;
+	sa->prox = a->prim;
 	a->prim = sa;
+}
+
+void insere_irmao(Tree* pai, Tree* irmao, char* nome){
+	Tree* p;
+	if(pai->prim == NULL){
+		pai->prim = irmao;
+	}
+	else {
+		Tree* j;
+		printf(j->nome_raiz); 
+		for(j = pai->prim; j != NULL; j = j->prox){
+			//printf("%s",p->nome_raiz);
+			if(j->prox == NULL){
+				//printf("i'm sad");
+				j->prox = irmao;
+				return;
+			}
+		}
+	}
 }
 
 Tree* cria_arvore(Tree* t){
@@ -252,7 +358,6 @@ Tree* cria_arvore(Tree* t){
 				it++;
 			}
 		}
-		printf("%s",nome);
 		a = arv_aloca(a, tipo, nome , narqs, data, hora, nomearquivo);
 		printf("%s",string);
 	}

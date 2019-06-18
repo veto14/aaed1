@@ -158,7 +158,7 @@ char* qual_mes(int m){
 		case 2:
 			return "Fevereiro";
 		case 3:
-			return "Março";
+			return "MarÃ§o";
 		case 4:
 			return "Abril";
 		case 5:
@@ -257,7 +257,7 @@ Tree* busca(Tree* t, char* nome){
 			}
 		}
 	}
-	printf("Não foi possivel encontrar o diretório %s na árvore.\n",nome);
+	printf("NÃ£o foi possivel encontrar o diretÃ³rio %s na Ã¡rvore.\n",nome);
 	return t;
 }
 
@@ -328,7 +328,7 @@ Tree* cria_arvore(Tree* t){
 		for(int j=2; j<tam; j++){
 			if(string[j] == '\\'){
 				char barra;
-				printf("\nFoi detectada uma ocorrencia de \\ na sua entrada. Você deseja que ela seja convertida para uma barra normal? (Y = Sim, N = Nao)");
+				printf("\nFoi detectada uma ocorrencia de \\ na sua entrada. VocÃª deseja que ela seja convertida para uma barra normal? (Y = Sim, N = Nao)");
 				scanf("%c",&barra);
 				if(barra == 'Y'){
 					string[j] == '/';

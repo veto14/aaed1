@@ -71,12 +71,12 @@ int main(){
 				Tree* dir;
 				printf("Insira o nome do destino onde seu arquivo deve ser inserido: ");
 				scanf("%s",entradatxt);
-				printf("\nInsira o nome desejado para o diretório: ");
+				printf("\nInsira o nome desejado para o diretÃ³rio: ");
 				scanf("%s",entradatxt2);
 				aux = busca(c,entradatxt);
 				dir = aux;
 				if(aux == NULL){
-					printf("Não existe um diretório com esse nome, deseja cria-lo na raiz? (Y)/(N)\n");
+					printf("NÃ£o existe um diretÃ³rio com esse nome, deseja cria-lo na raiz? (Y)/(N)\n");
 					scanf("%c",valida);
 					if(valida == 'Y' || valida == 'y'){
 						//criar diretorio na raiz
@@ -84,7 +84,7 @@ int main(){
 				}
 				aux = busca(dir,entradatxt2);
 				while(aux != NULL){
-					printf("Já existe um arquivo com este nome no diretorio, por favor, insira outro nome.\n");
+					printf("JÃ¡ existe um arquivo com este nome no diretorio, por favor, insira outro nome.\n");
 					scanf("%s",entradatxt2);
 					aux = busca(dir,entradatxt2);
 				}
@@ -153,7 +153,7 @@ void arvv_imprime(Tree* t){
 	if(t->tipo == 'T'){
 		printf("Arquivo Texto\n");
 	}
-	printf("Diretorio à que pertence: %s\n",t->nome);
+	printf("Diretorio Ã  que pertence: %s\n",t->nome);
 	if(t->tipo != 'R'){
 		printf("Nome do Arquivo: %s\n",t->nome_raiz);
 	}
@@ -191,7 +191,7 @@ char* qual_mes(int m){
 		case 2:
 			return "Fevereiro";
 		case 3:
-			return "Março";
+			return "MarÃ§o";
 		case 4:
 			return "Abril";
 		case 5:
@@ -291,7 +291,7 @@ Tree* busca(Tree* t, char* nome){
 			}
 		}
 	}
-	printf("Não foi possivel encontrar o '%s' na árvore.\n",nome);
+	printf("NÃ£o foi possivel encontrar o '%s' na Ã¡rvore.\n",nome);
 	return NULL;
 }
 
@@ -374,7 +374,7 @@ Tree* cria_arvore(Tree* t){
 		for(int j=2; j<tam; j++){
 			if(string[j] == '\\'){
 				char barra;
-				printf("\nFoi detectada uma ocorrencia de \\ na sua entrada. Você deseja que ela seja convertida para uma barra normal? (Y = Sim, N = Nao)");
+				printf("\nFoi detectada uma ocorrencia de \\ na sua entrada. VocÃª deseja que ela seja convertida para uma barra normal? (Y = Sim, N = Nao)");
 				scanf("%c",&barra);
 				if(barra == 'Y'){
 					string[j] == '/';

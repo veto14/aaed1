@@ -87,7 +87,7 @@ int main(){
 				aux = busca(c,entradatxt);
 				dir = aux;
 				if(aux == NULL){
-					printf("Não existe um diretório com esse nome, deseja cria-lo na raiz? (Y)/(N)\n");
+					printf("NÃ£o existe um diretÃ³rio com esse nome, deseja cria-lo na raiz? (Y)/(N)\n");
 					getchar();
 					scanf("%c",&valida);
 					if(valida == 'y' || valida == 'Y'){
@@ -99,11 +99,11 @@ int main(){
 				}
 				aux = busca(dir,entradatxt2);
 				while(aux != NULL){
-					printf("Já existe um arquivo com este nome no diretorio, por favor, insira outro nome.\n");
+					printf("JÃ¡ existe um arquivo com este nome no diretorio, por favor, insira outro nome.\n");
 					scanf("%s",entradatxt2);
 					aux = busca(dir,entradatxt2);
 				}
-				printf("Deseja inserir um Arquivo de (T)exto, um Arquivo (B)inário ou um (D)iretório?\n");
+				printf("Deseja inserir um Arquivo de (T)exto, um Arquivo (B)inÃ¡rio ou um (D)iretÃ³rio?\n");
 				getchar();
 				scanf("%c",&valida);
 				while(valida != 'b' && valida != 'B' && valida != 't' && valida != 'T' && valida != 'd' && valida != 'D'){
@@ -134,7 +134,7 @@ int main(){
 					printf("O %s desejado foi encontrado dentro do diretorio %s!\n",get_tipo(busca_result),busca_result->nome);
 				}
 				if(busca_result == NULL){
-					printf("O %s desejado não foi encontrado em nenhuma pasta.\n",get_tipo(busca_result));
+					printf("O %s desejado nÃ£o foi encontrado em nenhuma pasta.\n",get_tipo(busca_result));
 				}
 				break;
 			case 4:
@@ -146,7 +146,7 @@ int main(){
 					
 				}
 				if(busca_result == NULL){
-					printf("O %s desejado não foi encontrado em nenhuma pasta.\nDeseja criar um diretorio com esse nome na raiz? (Y)/(N)",get_tipo(busca_result));
+					printf("O %s desejado nÃ£o foi encontrado em nenhuma pasta.\nDeseja criar um diretorio com esse nome na raiz? (Y)/(N)",get_tipo(busca_result));
 					getchar();
 					scanf("%c",&valida);
 					if(valida == 'y' || valida == 'Y'){
@@ -289,7 +289,7 @@ void arvv_imprime(Tree* t){
 		printf("Nome da Raiz: %s\n",t->nome_raiz);
 	}
 	if(t->tipo != 'R'){
-		printf("Diretorio à que pertence: %s\n",t->nome);
+		printf("Diretorio Ã  que pertence: %s\n",t->nome);
 		printf("Nome do Arquivo: %s\n",t->nome_raiz);
 	}
 	if(t->tipo == 'D'){
@@ -326,7 +326,7 @@ char* qual_mes(int m){
 		case 2:
 			return "Fevereiro";
 		case 3:
-			return "Março";
+			return "MarÃ§o";
 		case 4:
 			return "Abril";
 		case 5:
@@ -426,7 +426,7 @@ Tree* busca(Tree* t, char* nome){
 			}
 		}
 	}
-	printf("Não foi possivel encontrar o '%s' na árvore.\n",nome);
+	printf("NÃ£o foi possivel encontrar o '%s' na Ã¡rvore.\n",nome);
 	return NULL;
 }
 
@@ -509,7 +509,7 @@ Tree* cria_arvore(Tree* t){
 		for(int j=2; j<tam; j++){
 			if(string[j] == '\\'){
 				char barra;
-				printf("\nFoi detectada uma ocorrencia de \\ na sua entrada. Você deseja que ela seja convertida para uma barra normal? (Y = Sim, N = Nao)");
+				printf("\nFoi detectada uma ocorrencia de \\ na sua entrada. VocÃª deseja que ela seja convertida para uma barra normal? (Y = Sim, N = Nao)");
 				scanf("%c",&barra);
 				if(barra == 'Y'){
 					string[j] == '/';

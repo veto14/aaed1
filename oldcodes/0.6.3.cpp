@@ -88,7 +88,7 @@ int main(){
 				aux = busca(c,entradatxt);
 				dir = aux;
 				if(aux == NULL){
-					printf("N„o existe um diretÛrio com esse nome, deseja cria-lo na raiz? (Y)/(N)\n");
+					printf("N√£o existe um diret√≥rio com esse nome, deseja cria-lo na raiz? (Y)/(N)\n");
 					getchar();
 					scanf("%c",&valida);
 					if(valida == 'y' || valida == 'Y'){
@@ -100,11 +100,11 @@ int main(){
 				}
 				aux = busca(dir,entradatxt2);
 				while(aux != NULL){
-					printf("J· existe um arquivo com este nome no diretorio, por favor, insira outro nome.\n");
+					printf("J√° existe um arquivo com este nome no diretorio, por favor, insira outro nome.\n");
 					scanf("%s",entradatxt2);
 					aux = busca(dir,entradatxt2);
 				}
-				printf("Deseja inserir um Arquivo de (T)exto, um Arquivo (B)in·rio ou um (D)iretÛrio?\n");
+				printf("Deseja inserir um Arquivo de (T)exto, um Arquivo (B)in√°rio ou um (D)iret√≥rio?\n");
 				getchar();
 				scanf("%c",&valida);
 				while(valida != 'b' && valida != 'B' && valida != 't' && valida != 'T' && valida != 'd' && valida != 'D'){
@@ -135,7 +135,7 @@ int main(){
 					printf("O %s desejado foi encontrado dentro do diretorio %s!\n",get_tipo(busca_result),busca_result->nome);
 				}
 				if(busca_result == NULL){
-					printf("O %s desejado n„o foi encontrado em nenhuma pasta.\n",get_tipo(busca_result));
+					printf("O %s desejado n√£o foi encontrado em nenhuma pasta.\n",get_tipo(busca_result));
 				}
 				break;
 			case 4:
@@ -147,7 +147,7 @@ int main(){
 					
 				}
 				if(busca_result == NULL){
-					printf("O %s desejado n„o foi encontrado em nenhuma pasta.\nDeseja criar um diretorio com esse nome na raiz? (Y)/(N)",get_tipo(busca_result));
+					printf("O %s desejado n√£o foi encontrado em nenhuma pasta.\nDeseja criar um diretorio com esse nome na raiz? (Y)/(N)",get_tipo(busca_result));
 					getchar();
 					scanf("%c",&valida);
 					if(valida == 'y' || valida == 'Y'){
@@ -327,7 +327,7 @@ char* qual_mes(int m){
 		case 2:
 			return "Fevereiro";
 		case 3:
-			return "MarÁo";
+			return "Mar√ßo";
 		case 4:
 			return "Abril";
 		case 5:
@@ -427,7 +427,7 @@ Tree* busca(Tree* t, char* nome){
 			}
 		}
 	}
-	printf("N„o foi possivel encontrar o '%s' na ·rvore.\n",nome);
+	printf("N√£o foi possivel encontrar o '%s' na √°rvore.\n",nome);
 	return NULL;
 }
 
@@ -510,7 +510,7 @@ Tree* cria_arvore(Tree* t){
 		for(int j=2; j<tam; j++){
 			if(string[j] == '\\'){
 				char barra;
-				printf("\nFoi detectada uma ocorrencia de \\ na sua entrada. VocÍ deseja que ela seja convertida para uma barra normal? (Y = Sim, N = Nao)");
+				printf("\nFoi detectada uma ocorrencia de \\ na sua entrada. Voc√™ deseja que ela seja convertida para uma barra normal? (Y = Sim, N = Nao)");
 				scanf("%c",&barra);
 				if(barra == 'Y'){
 					string[j] == '/';
